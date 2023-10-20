@@ -2,12 +2,14 @@ import Link from "next/link";
 
 import { CreatePost } from "~/app/_components/create-post";
 import { api } from "~/trpc/server";
+import Navbar from "./_components/Navbar";
 
 export default async function Home() {
   const allMessages = await api.post.getAllMessages.query();
 
   return (
     <main className="flex h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+      <Navbar />
       <div className="space-y-2">
         {allMessages.map((message) => (
           <p key={message.id}>{message.name}</p>
